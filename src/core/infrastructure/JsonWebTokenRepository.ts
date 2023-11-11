@@ -1,11 +1,11 @@
-import JwtGeneratorRepository from "../../domain/repositories/JwtGeneratorRepository";
+import JwtGeneratorRepository from "../domain/repositories/JwtGeneratorRepository";
 import jwt from 'jsonwebtoken'
-import config from '../../../utils/config'
-import { TOKEN_EXPIRATION_TIME } from '../../../utils/constants'
-import errorMessages from "../../../utils/ErrorMessages"
-import CreditCardTokenData from "../../domain/entities/CreditCardTokenData";
+import config from '../../utils/config'
+import { TOKEN_EXPIRATION_TIME } from '../../utils/constants'
+import errorMessages from "../../utils/ErrorMessages"
+import CreditCardTokenData from "../domain/entities/CreditCardTokenData";
 
-export default class TokenizationJwtRepository implements JwtGeneratorRepository {
+export default class JsonWebTokenRepository implements JwtGeneratorRepository {
   
   createToken({ 
     email, 

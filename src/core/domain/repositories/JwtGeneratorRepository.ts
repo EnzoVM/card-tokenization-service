@@ -1,7 +1,8 @@
 import CreditCardTokenData from "../entities/CreditCardTokenData"
 
 export default interface JwtGeneratorRepository {
-  createToken: ({ email,
+  createToken: ({ 
+    email,
     cardNumber,
     cvv,
     expirationYear,

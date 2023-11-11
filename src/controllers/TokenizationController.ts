@@ -1,22 +1,16 @@
 import { Request, Response } from 'express'
 import CreditCardTokenizationUseCase from "../core/application/usecases/CreditCardTokenizationUseCase"
-import TokenRedisRepository from "../core/infrastructure/redis/TokenRedisRepository"
-import TokenizationJwtRepository from "../core/infrastructure/jwt/TokenizationJwtRepository"
+import RedisRepository from "../core/infrastructure/RedisRepository"
+import JsonWebTokenRepository from "../core/infrastructure/JsonWebTokenRepository"
 
 const creditCardTokenizationUseCase = new CreditCardTokenizationUseCase(
-  new TokenizationJwtRepository(),
-  new TokenRedisRepository()
+  new JsonWebTokenRepository(),
+  new RedisRepository()
 )
 
 export const tokenization = async (req: Request, res: Response) => {
   const businessIdentifier = req.body.businessIdentifier
-  const {
-    email,
-    cardNumber,
-    cvv,
-    expirationYear,
-    expirationMonth
-  } = req.body
+  const { email, cardNumber, cvv, expirationYear, expirationMonth } = req.body
   
   try { 
     const tokenCreated = await creditCardTokenizationUseCase.invoke({
@@ -29,7 +23,7 @@ export const tokenization = async (req: Request, res: Response) => {
     })
     
     res.status(201).json({
-      status: 201,
+      status: 'Ok',
       message: 'Token has been saved succesfully',
       data: tokenCreated
     })
