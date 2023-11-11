@@ -2,7 +2,7 @@ import validator from 'validator'
 import JwtGeneratorRepository from '../../domain/repositories/JwtGeneratorRepository'
 import TokenizationPersistanceRepository from '../../domain/repositories/TokenizationPersistenceRepository'
 import CreditCardDataDTO from '../dto/CreditCardDataDTO'
-import ErrorMessages from '../../../utils/ErrorMessages'
+import ErrorMessages from '../../../utils/errorMessages'
 import {
   ALLOWED_DOMAINS,
   LUHN_ALGORITHM_CONSTANTS,
@@ -20,7 +20,6 @@ export default class CreditCardTokenizationUseCase {
   ) {}
   
   async invoke({
-    businessIdentifier,
     email,
     cardNumber,
     cvv,
@@ -46,9 +45,9 @@ export default class CreditCardTokenizationUseCase {
       expirationMonth
     })
     
-    await this.tokenizationPersistanceRepository.saveToken({ token, businessIdentifier })
+    const key: string = await this.tokenizationPersistanceRepository.saveToken({ token })
     
-    return token
+    return key
   }
   
   private isValidCreditCard({ cardNumber }:{ cardNumber: number }): boolean {

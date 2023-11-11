@@ -2,12 +2,12 @@ import JwtGeneratorRepository from "../domain/repositories/JwtGeneratorRepositor
 import jwt from 'jsonwebtoken'
 import config from '../../utils/config'
 import { TOKEN_EXPIRATION_TIME } from '../../utils/constants'
-import errorMessages from "../../utils/ErrorMessages"
+import errorMessages from "../../utils/errorMessages"
 import CreditCardTokenData from "../domain/entities/CreditCardTokenData";
 
 export default class JsonWebTokenRepository implements JwtGeneratorRepository {
-  
-  createToken({ 
+
+  createToken ({ 
     email, 
     cardNumber, 
     cvv, 
@@ -40,8 +40,26 @@ export default class JsonWebTokenRepository implements JwtGeneratorRepository {
       return token
     
     } catch (error: any) {
-      throw new Error(errorMessages.ERROR_CREATING_TOKEN + error.message)
+      throw new Error(errorMessages.JWT_TOOL_ERROR + error.message)
     }
   }
 
+  verifyToken ({ token }: { token: string }): CreditCardTokenData {
+    try {
+      const {
+        TOKEN: { SECRET_KEY }
+      } = config
+
+      if(!SECRET_KEY) {
+        throw new Error(errorMessages.INVALID_SECRET_KEY)
+      }
+
+      const decodedToken = jwt.verify(token, SECRET_KEY) as CreditCardTokenData
+      
+      return decodedToken
+      
+    } catch (error: any) {
+      throw new Error(errorMessages.JWT_TOOL_ERROR + error.message)
+    }
+  }
 }

@@ -1,7 +1,6 @@
-export default interface CreditCardDataDTO {
+export default interface CreditCardDataResponseDTO {
   email: string,
   cardNumber: number,
-  cvv: number,
   expirationYear: string,
   expirationMonth: string
 }

@@ -8,4 +8,10 @@ export default interface JwtGeneratorRepository {
     expirationYear,
     expirationMonth 
   }: CreditCardTokenData) => string
+
+  verifyToken: ({
+    token
+  }:{
+    token: string
+  }) => CreditCardTokenData
 }

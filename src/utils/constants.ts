@@ -1,4 +1,4 @@
-// CreditCardTokenizationUseCase
+// usecases/CreditCardTokenizationUseCase
 export const LUHN_ALGORITHM_CONSTANTS = {
   DUPLICATION_FACTOR: 2,
   ADJUSTMENT_VALUE: 9,
@@ -34,9 +34,13 @@ export const MONTH_RANGE_END: number = 12
 export const MAX_VALIDITY_YEARS: number = 5
 export const ALLOWED_DOMAINS: string[] = ['gmail.com', 'hotmail.com', 'yahoo.es']
 
-// TokenizationJwtRepository
+// infrastructure/JsonWebTokenRepository
 export const TOKEN_EXPIRATION_TIME: string = '1m'
 
-// Middleware
+// infrastructure/RedisRepository
+export const REDIS_EXPIRATION_TIME_SECONDS: number = 60
+
+// Middleware/ValidateBusinessIdentifier
 export const AUTHORIZATION_HEADER = 'Authorization'
 export const BEARER_PREFIX = 'Bearer '
+export const ALLOWED_MERCHANT_NAMES: string[] = ['Comercio de Prueba']
