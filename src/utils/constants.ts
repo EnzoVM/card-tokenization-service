@@ -44,3 +44,9 @@ export const REDIS_EXPIRATION_TIME_SECONDS: number = 60
 export const AUTHORIZATION_HEADER = 'Authorization'
 export const BEARER_PREFIX = 'Bearer '
 export const ALLOWED_MERCHANT_NAMES: string[] = ['Comercio de Prueba']
+
+// utils/config
+export const DEFAULT_VALUE ={
+  STRING: '',
+  NUMBER: 0
+}
