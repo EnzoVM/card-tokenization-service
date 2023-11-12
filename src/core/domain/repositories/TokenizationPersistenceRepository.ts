@@ -1,8 +1,14 @@
-import TokenInfo from "../entities/TokenInfo"
 
 export default interface TokenizationPersistenceRepository {
-  saveToken: ({ 
-    token, 
-    businessIdentifier 
-  }: TokenInfo) => Promise<void>
+  saveToken: ({
+    token
+  }:{
+    token: string
+  }) => Promise<string>
+  
+  getCreditCardData: ({
+    token
+  }:{
+    token: string
+  }) => Promise<string | null>
 }

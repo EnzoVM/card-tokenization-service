@@ -1,16 +1,18 @@
 export const jsonWebTokenRepositoryMock = {
-  createToken: jest.fn()
+  createToken: jest.fn(),
+  verifyToken: jest.fn()
 }
 
 export const redisRepositoryMock = {
-  saveToken: jest.fn()
+  saveToken: jest.fn(),
+  getCreditCardData: jest.fn()
 }
 
 export const tokenMock = "eyJhbGciOiJIUzI1NiJ95ENkMNKfG9WMYQNAqdaScHUAT_u2vQgtpom9-7z1w"
+export const keyMock = "2292f68e-c868-4344-8751-f6405ea"
 
 export const mockParameter = [
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@gmail.com",    // Correo de gmail.com
     cardNumber: 4532015112830366,
     cvv: 123,   // 3 digitos
@@ -18,7 +20,6 @@ export const mockParameter = [
     expirationMonth: "1"    // Primer mes
   },
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@hotmail.com",    // Correo de hotmail.com
     cardNumber: 5424180123456789,
     cvv: 5678,    // 4 digitos
@@ -26,7 +27,6 @@ export const mockParameter = [
     expirationMonth: "12"   // Ultimo mes
   },
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@yahoo.es",   // Correo de yahoo.es
     cardNumber: 378282246310005,
     cvv: 321,   // 3 digitos
@@ -37,7 +37,6 @@ export const mockParameter = [
 
 export const mockErrorParameter = [
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@outlook.com",    // El dominio del correo no se encuentra dentro de la WhiteList (gmail.com, hotmail.com, yahoo.es)
     cardNumber: 4532015112830366,
     cvv: 123,
@@ -45,7 +44,6 @@ export const mockErrorParameter = [
     expirationMonth: "1"
   },
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@gmail.com",    
     cardNumber: 5424180123476989,   // Número de tarjeta de crédito que ni cumple con el algoritmo de Luhn
     cvv: 123,   
@@ -53,7 +51,6 @@ export const mockErrorParameter = [
     expirationMonth: "1"    
   },
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@gmail.com",    
     cardNumber: 54241801234769898,   // La cantidad de digitos (17) excede el minimo de 13 y máximo de 16 caracteres
     cvv: 123,   
@@ -61,7 +58,6 @@ export const mockErrorParameter = [
     expirationMonth: "1"    
   },
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@gmail.com",    
     cardNumber: 6011111111111117,
     cvv: 12345,   // La cantidad de digitos (5) excede el minimo de 3 y máximo de 4 caracteres
@@ -69,7 +65,6 @@ export const mockErrorParameter = [
     expirationMonth: "1"    
   },
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@gmail.com",    
     cardNumber: 3530111333300000,
     cvv: 123,   
@@ -77,7 +72,6 @@ export const mockErrorParameter = [
     expirationMonth: "1"    
   },
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@gmail.com",    
     cardNumber: 3530111333300000,
     cvv: 123,   
@@ -85,7 +79,6 @@ export const mockErrorParameter = [
     expirationMonth: "1"    
   },
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@gmail.com",    
     cardNumber: 4532015112830366,
     cvv: 123,
@@ -96,15 +89,16 @@ export const mockErrorParameter = [
 
 export const mockEmptyParameter = [
   {
-    businessIdentifier: "Comercio de Prueba",
-    // email: "prueba@gmail.com",    
+    // Todos los campos faltan
+  },
+  {
+    // email: "prueba@gmail.com",
     cardNumber: 4532015112830366,
     cvv: 123,  
     expirationYear: "2023",  
     expirationMonth: "1"   
   },
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@gmail.com",    
     // cardNumber: 4532015112830366,
     cvv: 123,  
@@ -112,7 +106,6 @@ export const mockEmptyParameter = [
     expirationMonth: "1"   
   },
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@gmail.com",    
     cardNumber: 4532015112830366,
     // cvv: 123,  
@@ -120,7 +113,6 @@ export const mockEmptyParameter = [
     expirationMonth: "1"   
   },
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@gmail.com",    
     cardNumber: 4532015112830366,
     cvv: 123,  
@@ -128,7 +120,6 @@ export const mockEmptyParameter = [
     expirationMonth: "1"   
   },
   {
-    businessIdentifier: "Comercio de Prueba",
     email: "prueba@gmail.com",    
     cardNumber: 4532015112830366,
     cvv: 123,  
