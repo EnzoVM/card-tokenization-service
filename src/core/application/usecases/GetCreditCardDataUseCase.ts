@@ -21,7 +21,7 @@ export default class GetCreditCardDataUseCase {
       throw new Error(errorMessages.EXPIRED_CREDIT_CARD)
     }
     
-    const creditCardInformation = await this.jwtGeneratorRepository.verifyToken({ token: creditCardData })
+    const creditCardInformation = this.jwtGeneratorRepository.verifyToken({ token: creditCardData })
     const dataFormatted = CreditCardDataMapper.filter({ creditCardInformation })
     
     return dataFormatted
