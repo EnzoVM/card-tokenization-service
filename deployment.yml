@@ -1,3 +1,16 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysecrets
+type: Opaque
+data:
+  NODE_LOCAL_PORT: MzAwMA==  
+  TOKEN_SECRET_KEY: NzNES2Y4dHROZHlCcVZDQnl2d3VXQ2I4NEpLTUVz  
+  REDIS_HOST: cmVkaXMtZGF0YWJhc2UuZWt6MHluLm5nLjAwMDEudXNlMS5jYWNoZS5hbWF6b25hd3MuY29t
+  REDIS_DOCKER_PORT: NjM3OQ==  
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,13 +31,25 @@ spec:
           imagePullPolicy: Always
           env:
             - name: NODE_LOCAL_PORT
-              value: "3000"
+              valueFrom:
+                secretKeyRef:
+                  name: mysecrets
+                  key: NODE_LOCAL_PORT
             - name: TOKEN_SECRET_KEY
-              value: "73DKf8ttNdyBqVCByvwuWCb84JKMEs"
+              valueFrom:
+                secretKeyRef:
+                  name: mysecrets
+                  key: TOKEN_SECRET_KEY
             - name: REDIS_HOST
-              value: "redis-database.ekz0yn.ng.0001.use1.cache.amazonaws.com"
+              valueFrom:
+                secretKeyRef:
+                  name: mysecrets
+                  key: REDIS_HOST
             - name: REDIS_DOCKER_PORT
-              value: "6379"
+              valueFrom:
+                secretKeyRef:
+                  name: mysecrets
+                  key: REDIS_DOCKER_PORT
           livenessProbe: 
             httpGet:
               path: /healthcheck
