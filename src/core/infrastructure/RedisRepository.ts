@@ -1,16 +1,10 @@
-import { createClient } from "redis";
 import TokenizationPersistanceRepository from "../domain/repositories/TokenizationPersistenceRepository";
 import errorMessages from "../../utils/errorMessages"
 import { v4 as uuid } from 'uuid'
 import { REDIS_EXPIRATION_TIME_SECONDS } from "../../utils/constants"
-import config from "../../utils/config";
+import { connection } from "../../database/redisConnection";
 
-const client = createClient({
-  socket: {
-    host: config.REDIS.HOST,
-    port: config.REDIS.PORT
-  }
-})
+const client = connection()
 
 export default class RedisRepository implements TokenizationPersistanceRepository{
   

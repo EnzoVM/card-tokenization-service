@@ -51,7 +51,7 @@ export default class CreditCardTokenizationUseCase {
   }
   
   private isValidCreditCard({ cardNumber }:{ cardNumber: number }): boolean {
-    const isValidLengthAndNotEmpty: boolean = this.isValidString({ 
+    const isValidLengthAndNotEmpty: boolean = this.isValidLengthAndNotEmpty({ 
       value: cardNumber,
       minLength: LENGTH_CONSTRAINTS.CARD_NUMBER.MIN, 
       maxLength: LENGTH_CONSTRAINTS.CARD_NUMBER.MAX 
@@ -80,7 +80,7 @@ export default class CreditCardTokenizationUseCase {
   }
 
   private isValidCvv({ cvv }:{ cvv: number }): boolean {
-    return this.isValidString({ 
+    return this.isValidLengthAndNotEmpty({ 
       value: cvv,
       minLength: LENGTH_CONSTRAINTS.CVV.MIN, 
       maxLength: LENGTH_CONSTRAINTS.CVV.MAX 
@@ -88,7 +88,7 @@ export default class CreditCardTokenizationUseCase {
   }
 
   private isValidExpirationMonth({ expirationMonth }:{ expirationMonth: string }): boolean {
-    const isValidLengthAndNotEmpty: boolean = this.isValidString({ 
+    const isValidLengthAndNotEmpty: boolean = this.isValidLengthAndNotEmpty({ 
       value: expirationMonth, 
       minLength: LENGTH_CONSTRAINTS.EXPIRATION_MONTH.MIN, 
       maxLength: LENGTH_CONSTRAINTS.EXPIRATION_MONTH.MAX 
@@ -105,7 +105,7 @@ export default class CreditCardTokenizationUseCase {
   }
 
   private isValidExpirationYear({ expirationYear }:{ expirationYear: string }): boolean {
-    const isValidLengthAndNotEmpty: boolean = this.isValidString({ 
+    const isValidLengthAndNotEmpty: boolean = this.isValidLengthAndNotEmpty({ 
       value: expirationYear, 
       minLength: LENGTH_CONSTRAINTS.EXPIRATION_YEAR.MIN, 
       maxLength: LENGTH_CONSTRAINTS.EXPIRATION_YEAR.MAX 
@@ -123,7 +123,7 @@ export default class CreditCardTokenizationUseCase {
   }
 
   private isValidEmail({ email, emailValidator }:{ email: string, emailValidator: (value: string, options?: any) => boolean }): boolean {
-    const isValidLengthAndNotEmpty: boolean = this.isValidString({ 
+    const isValidLengthAndNotEmpty: boolean = this.isValidLengthAndNotEmpty({ 
       value: email, 
       minLength: LENGTH_CONSTRAINTS.EMAIL.MIN, 
       maxLength: LENGTH_CONSTRAINTS.EMAIL.MAX 
@@ -140,7 +140,7 @@ export default class CreditCardTokenizationUseCase {
     return isValidLengthAndNotEmpty
   }
   
-  private isValidString({ value, minLength, maxLength }:{ value: string | number, minLength: number, maxLength: number }): boolean {
+  private isValidLengthAndNotEmpty({ value, minLength, maxLength }:{ value: string | number, minLength: number, maxLength: number }): boolean {
     if(!value){
       return false
     }
