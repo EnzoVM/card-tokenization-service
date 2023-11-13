@@ -49,7 +49,7 @@ export const getCreditCardData = async (req: Request, res: Response) => {
   try { 
     const creditCardInformation = await getCreditCardDataUseCase.invoke({ token })
     
-    res.status(201).json({
+    res.status(200).json({
       status: 'Ok',
       message: 'Credit card details successfully retrieved',
       data: creditCardInformation
