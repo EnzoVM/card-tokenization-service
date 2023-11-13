@@ -71,7 +71,7 @@ jobs:
           fetch-depth: 0
       - name: Connect with eks cluster
         run: aws eks --region ${{ env.AWS_REGION }} update-kubeconfig --name ${{ env.CLUSTER_NAME }}
-      - name: Delete Deployment
-        run: kubectl delete -f deployment.yml
+      - name: Delete Deployment                       # Comentar si se ejecuta por primera vez
+        run: kubectl delete -f deployment.yml         # Comentar si se ejecuta por primera vez
       - name: Create Deployment
         run: kubectl create -f deployment.yml
