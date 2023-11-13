@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: credit-card-tokenization
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: credit-card-tokenization
+  template:
+    metadata:
+      labels:
+        app: credit-card-tokenization
+    spec:
+      containers:
+        - name: credit-card-tokenization
+          image: 510391598264.dkr.ecr.us-east-1.amazonaws.com/credit-card-tokenization:latest
+          imagePullPolicy: Always
+          env:
+            - name: NODE_LOCAL_PORT
+              value: "3000"
+            - name: TOKEN_SECRET_KEY
+              value: "73DKf8ttNdyBqVCByvwuWCb84JKMEs"
+            - name: REDIS_HOST
+              value: "redis-database.ekz0yn.ng.0001.use1.cache.amazonaws.com"
+            - name: REDIS_DOCKER_PORT
+              value: "6379"
+          livenessProbe: 
+            httpGet:
+              path: /healthcheck
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5

@@ -4,7 +4,7 @@ import express, { Request, Response } from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import config from './utils/config'
-import tokenizationRouter from './routes/tokenization.routes'
+import tokenizationRouter from './routes/tokenizationRoutes'
 
 const app = express()
 
@@ -17,6 +17,12 @@ app.set('PORT', config.PORT)
 app.get('/', (_req: Request, res: Response) => {
   res.status(200).json({
     message: 'Card Tokenization Service is ON'
+  }).end()
+})
+
+app.get('/healthcheck', (_req: Request, res: Response) => {
+  res.status(200).json({
+    message: 'Ok'
   }).end()
 })
 

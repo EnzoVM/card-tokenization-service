@@ -4,14 +4,17 @@ import GetCreditCardDataUseCase from '../core/application/usecases/GetCreditCard
 import RedisRepository from "../core/infrastructure/RedisRepository"
 import JsonWebTokenRepository from "../core/infrastructure/JsonWebTokenRepository"
 
+const jsonWebTokenRepository = new JsonWebTokenRepository()
+const redisRepository = new RedisRepository()
+
 const creditCardTokenizationUseCase = new CreditCardTokenizationUseCase(
-  new JsonWebTokenRepository(),
-  new RedisRepository()
+  jsonWebTokenRepository,
+  redisRepository
 )
 
 const getCreditCardDataUseCase = new GetCreditCardDataUseCase(
-  new JsonWebTokenRepository(),
-  new RedisRepository()
+  jsonWebTokenRepository,
+  redisRepository
 )
 
 export const tokenization = async (req: Request, res: Response) => {
