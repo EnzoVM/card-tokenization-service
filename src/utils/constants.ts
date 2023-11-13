@@ -43,6 +43,7 @@ export const REDIS_EXPIRATION_TIME_SECONDS: number = 60
 // Middleware/ValidateBusinessIdentifier
 export const AUTHORIZATION_HEADER = 'Authorization'
 export const BEARER_PREFIX = 'Bearer '
+export const TOKEN_SECRET_KEY_TEST = 'w3X9bPbH35Hi9qShaVZe'
 export const ALLOWED_MERCHANT_NAMES: string[] = ['Comercio de Prueba']
 
 // utils/config
